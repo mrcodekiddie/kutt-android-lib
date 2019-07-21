@@ -9,7 +9,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-class HTTPRequestSender extends AsyncTask<Call,Void,String>
+class  HTTPRequestSender extends AsyncTask<Call,Void,String>
 {
 
 
@@ -29,34 +29,24 @@ class HTTPRequestSender extends AsyncTask<Call,Void,String>
 
             Boolean isResponseSuccess = responseMessage.isSuccessful();
             String responseSuccess = responseMessage.body();
-            String responseFailed = responseMessage.errorBody().string();
+            Integer responseCode=responseMessage.code();
 
+            Log.v("response"," "+responseSuccess +" "+responseCode.toString());
 
-            Log.v("watha", ""+isResponseSuccess.toString() + responseSuccess + responseFailed);
-            if (isResponseSuccess) {
-                result += responseSuccess;
-            } else {
-                result += responseFailed;
+            if(responseCode==200)
+            {
+                result+=responseSuccess;
+
+            }
+
+            if(responseCode==400)
+            {
+                result+=responseMessage.errorBody().string();
             }
 
 
-            response.enqueue(new Callback<String>() {
-                @Override
-                public void onResponse(Call<String> call, Response<String> response) {
-                    Log.v("watha",response.body());
-                    try {
-                        Log.v("watha_err",response.errorBody().string());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
 
-                }
 
-                @Override
-                public void onFailure(Call<String> call, Throwable t) {
-
-                }
-            });
         }
       catch (IOException ex)
       {

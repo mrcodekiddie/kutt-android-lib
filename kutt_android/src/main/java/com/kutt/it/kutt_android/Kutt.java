@@ -92,7 +92,10 @@ public class Kutt
             postData.put("domain",domain);
         }
         deleteCall=api.deleteUrl("application/json",postData.toString());
-        return "";
+
+        String result=new HTTPRequestSender().execute(deleteCall).get();
+
+        return result;
     }
 
     public String stats(@NonNull  String id,@Nullable String domain) throws Exception
@@ -107,44 +110,12 @@ public class Kutt
             statsCall=api.stats(id,domain);
         }
 
-        final String[] result = {"."};
 
 
-        //new HTTPRequestSender().execute(deleteCall).get();
 
-        final CountDownLatch countDownLatch=new CountDownLatch(1);
+       String result= new HTTPRequestSender().execute(statsCall).get();
 
-
-        statsCall.enqueue(new Callback<String>() {
-            @Override
-            public void onResponse(Call<String> call, Response<String> response) {
-                countDownLatch.countDown();
-                Log.v("peeda_latch_or", String.valueOf(countDownLatch.getCount()));
-
-                Log.v("peeda", String.valueOf(response.isSuccessful()));
-                Log.v("peeda_body",response.body());
-                try {
-                    Log.v("peeda_error_body",response.errorBody().string());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-                result[0] +=response.body();
-               countDownLatch.countDown();
-            }
-
-            @Override
-            public void onFailure(Call<String> call, Throwable t) {
-                result[0]+=t.getMessage();
-                //countDownLatch.countDown();
-            }
-        });
-
-        Log.v("peeda_latch", String.valueOf(countDownLatch.getCount()));
-        countDownLatch.await();
-
-
-        return result[0];
+        return result;
     }
 }
 
