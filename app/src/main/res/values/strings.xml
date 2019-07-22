@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Kutt.it</string>
+    <string name="api_key">api</string>
+    <string name="domain">domain</string>
 </resources>

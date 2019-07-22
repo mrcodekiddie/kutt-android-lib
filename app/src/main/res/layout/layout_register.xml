@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#F5F5F5"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="232dp"
+        android:layout_height="191dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/logo" />
+
+    <EditText
+        android:layout_below="@id/logo"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="7dp"
+        android:padding="5dp"
+        android:id="@+id/et_api"
+        android:hint="API key"
+        android:textAlignment="center"
+        android:background="@drawable/cornered_edittext"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <EditText
+        android:layout_below="@id/et_api"
+        android:id="@+id/et_domain"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="7dp"
+        android:padding="5dp"
+        android:hint="domain url"
+        android:textAlignment="center"
+        android:background="@drawable/cornered_edittext"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <Button
+        android:layout_marginTop="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="setup"
+        android:layout_centerHorizontal="true"
+        android:textColor="#FFFFFF"
+        android:id="@+id/button_setup"
+        android:backgroundTint="#4FC3F7"
+        android:layout_below="@id/et_domain"
+        android:background="@drawable/cornered_edittext"
+        />
+</RelativeLayout>
